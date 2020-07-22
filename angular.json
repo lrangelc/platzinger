@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "platzinger"
+    }
+  },
+  "defaultProject": "platzinger",
+  "cli": {
+    "analytics": "5b25e672-3468-4a92-a256-9a184b44ea41"
+  }
 }
