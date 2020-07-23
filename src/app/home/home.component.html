@@ -1,3 +1,9 @@
-<p *ngFor="let user of friends; let i = index">
-  {{ i + 1 }}. {{ user.nick }} - {{ user.email }}
-</p>
+<h3>Amigos</h3>
+<ng-container *ngFor="let user of friends; let i = index">
+  <p *ngIf="user.friend">{{ i + 1 }}. {{ user.nick }} - {{ user.email }}</p>
+</ng-container>
+
+<h3>No Agregados</h3>
+<ng-container *ngFor="let user of friends; let i = index">
+  <p *ngIf="!user.friend">{{ i + 1 }}. {{ user.nick }} - {{ user.email }}</p>
+</ng-container>
