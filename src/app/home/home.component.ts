@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from './../interfaces/user';
 
 @Component({
   selector: 'app-home',
@@ -6,30 +7,57 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
+  friends: User[];
+
   constructor() {
-    let c: number = 1;
-    let b: number = 2;
-    let e: string = '1';
-    let f: string = '2';
-    console.log('ok');
-    console.log(c + b);
-    console.log(e + f);
+    const user: User = {
+      nick: 'Luis',
+      email: 'luisrangelc@gmail.com',
+      friend: true,
+      uid: 1,
+    };
+    const users: User[] = [];
+    users.push(user);
+    console.log(user);
+    console.log(users);
 
-    let g: boolean = true;
-    let h: object = {};
-    console.log(g);
-    console.log(h);
+    const usuario1: User = {
+      nick: 'Eduardo',
+      age: 24,
+      email: 'ed@aoe.aoe',
+      friend: true,
+      uid: 1,
+    };
+    const usuario2: User = {
+      nick: 'Freddy',
+      age: 28,
+      email: 'fred@aoe.aoe',
+      friend: true,
+      uid: 1,
+    };
+    const usuario3: User = {
+      nick: 'Yuliana',
+      age: 18,
+      email: 'yuli@aoe.aoe',
+      friend: true,
+      uid: 1,
+    };
+    const usuario4: User = {
+      nick: 'Ricardo',
+      age: 17,
+      email: 'rick@aoe.aoe',
+      friend: false,
+      uid: 1,
+    };
+    const usuario5: User = {
+      nick: 'Marcos',
+      age: 30,
+      email: 'marcos@aoe.aoe',
+      friend: false,
+      uid: 1,
+    };
 
-    let i = [c, b, e, f, g, h];
-    console.log(i);
-
-    let j: boolean[] = [false, g, true];
-    console.log(j);
-    let k: object[] = [{}, h, { super: '' }, { c }];
-    console.log(k);
-
-    let l: any[] = [1, 'abc', {}, []];
-    console.log(l);
+    this.friends = [usuario1, usuario2, usuario3, usuario4, usuario5];
   }
 
   ngOnInit(): void {}
