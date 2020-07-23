@@ -26,35 +26,35 @@ export class HomeComponent implements OnInit {
       age: 24,
       email: 'ed@aoe.aoe',
       friend: true,
-      uid: 1,
+      uid: 2,
     };
     const usuario2: User = {
       nick: 'Freddy',
       age: 28,
       email: 'fred@aoe.aoe',
       friend: true,
-      uid: 1,
+      uid: 3,
     };
     const usuario3: User = {
       nick: 'Yuliana',
       age: 18,
       email: 'yuli@aoe.aoe',
       friend: true,
-      uid: 1,
+      uid: 4,
     };
     const usuario4: User = {
       nick: 'Ricardo',
       age: 17,
       email: 'rick@aoe.aoe',
       friend: false,
-      uid: 1,
+      uid: 5,
     };
     const usuario5: User = {
       nick: 'Marcos',
       age: 30,
       email: 'marcos@aoe.aoe',
       friend: false,
-      uid: 1,
+      uid: 6,
     };
 
     this.friends = [usuario1, usuario2, usuario3, usuario4, usuario5];
