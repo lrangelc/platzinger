@@ -12,6 +12,8 @@ import { LayoutComponent } from './layout/layout.component';
 import { SharedModule } from './shared/shared.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material/material.module';
+import { SearchPipe } from './pipes/search.pipe';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { MaterialModule } from './material/material.module';
     ProfileComponent,
     PageNotFoundComponent,
     LayoutComponent,
+    SearchPipe,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +32,7 @@ import { MaterialModule } from './material/material.module';
     SharedModule,
     BrowserAnimationsModule,
     MaterialModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],
