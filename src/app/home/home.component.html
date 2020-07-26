@@ -1,14 +1,54 @@
-<input type="text" placeholder="Find a Friend" [(ngModel)]="query" />
-<br /
-<h3>Amigos</h3>
-<ng-container *ngFor="let user of friends | search: query; let i = index">
-  <div>
-    <img class="user-status"
-      src="./../../../../../assets/img/logo_live_{{ user.status }}.png"
-      alt="status"
-    />
-    <a routerLink="/conversation/{{ user.uid }}"
-      >{{ i + 1 }}. {{ user.nick }} - {{ user.email }}</a
-    >
+<div class="homeContainer">
+  <div class="whiteBorderGlassBox">
+    <div class="homeHeadContainer">
+      <div class="row">
+        <div class="col-md-auto">
+          <div class="avatarFrameOnline">
+            <img
+              src="./../../assets/img/generic_avatar.png"
+              id="homeAvatarPicture"
+            />
+          </div>
+        </div>
+        <div class="col">
+          <b>Luis</b>
+          <div>
+            <span>Online</span>
+            <br />
+            <span>< Escribe un mensaje personal ></span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
-</ng-container>
+  <div class="whiteContainerPadded mt-3">
+    <div class="row">
+      <div class="col">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Find a Friend"
+          [(ngModel)]="query"
+        />
+      </div>
+      <div class="col-md-auto">
+        <img class="icon" src="./../../assets/img/logo_live_add.png" alt="" />
+      </div>
+    </div>
+    <hr />
+    <h3>Amigos ({{ friends.length }} / {{ friends.length }})</h3>
+    <ng-container *ngFor="let user of friends | search: query; let i = index">
+      <div class="mb-3">
+        <span routerLink="/conversation/{{ user.uid }}">
+          <img
+            class="user-status"
+            src="./../../../../../assets/img/logo_live_{{ user.status }}.png"
+            alt="status"
+          />
+          <b>{{ user.nick }}</b> - {{ user.subnick || "No subnick" }}
+          <small>{{ user.email }}</small>
+        </span>
+      </div>
+    </ng-container>
+  </div>
+</div>

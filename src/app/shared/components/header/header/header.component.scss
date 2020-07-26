@@ -1,4 +1,20 @@
 .main-logo {
-  width: 60px;
-  height: 60px;
+  height: 38px;
+  padding: 0;
+  margin: 0;
+}
+
+.menuContainer {
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    270deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(9, 9, 121, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  position: fixed;
+  width: 100%;
+  z-index: 9;
+  height: 56px;
+  top: 0px;
 }
