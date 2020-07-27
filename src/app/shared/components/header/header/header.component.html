@@ -1,0 +1,21 @@
+<mat-toolbar
+  color="primary"
+  class="menuContainer"
+  *ngIf="location.path() != '/login'"
+>
+  <mat-toolbar-row>
+    <div>
+      <nav>
+        <img
+          routerLink="/home"
+          class="main-logo"
+          src="./../../../../../assets/img/logo_live.png"
+          alt="Logo de Platzinger"
+        />
+        <a mat-button routerLink="/home">Home</a>
+        <a mat-button routerLink="/profile">Profile</a>
+        <a mat-button (click)="logout()">Logout</a>
+      </nav>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
