@@ -8,11 +8,21 @@ import { UserService } from './../services/user.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  friends: User[];
+  friends: User[] = [];
   query: string = '';
 
   constructor(private userService: UserService) {
-    this.friends = userService.getFriends();
+    userService
+      .getUsers()
+      .valueChanges()
+      .subscribe(
+        (data: User[]) => {
+          this.friends = data;
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
   }
 
   ngOnInit(): void {}

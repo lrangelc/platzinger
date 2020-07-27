@@ -1,64 +1,26 @@
 import { Injectable } from '@angular/core';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  friends: User[];
+  constructor(private angularFirestore: AngularFirestore) {}
 
-  constructor() {
-    const usuario1: User = {
-      nick: 'Eduardo',
-      age: 24,
-      email: 'ed@aoe.aoe',
-      friend: true,
-      uid: 2,
-      status: 'away',
-    };
-    const usuario2: User = {
-      nick: 'Freddy',
-      age: 28,
-      email: 'fred@aoe.aoe',
-      friend: true,
-      uid: 3,
-      status: 'away',
-    };
-    const usuario3: User = {
-      nick: 'Yuliana',
-      age: 18,
-      email: 'yuli@aoe.aoe',
-      friend: true,
-      uid: 4,
-      status: 'busy',
-    };
-    const usuario4: User = {
-      nick: 'Ricardo',
-      age: 17,
-      email: 'rick@aoe.aoe',
-      friend: false,
-      uid: 5,
-      status: 'offline',
-    };
-    const usuario5: User = {
-      nick: 'Marcos',
-      age: 30,
-      email: 'marcos@aoe.aoe',
-      friend: false,
-      uid: 6,
-      status: 'online',
-    };
-
-    this.friends = [usuario1, usuario2, usuario3, usuario4, usuario5];
+  getUsers() {
+    return this.angularFirestore.collection('users');
   }
 
-  getFriends(): User[] {
-    return this.friends;
+  getUserById(uid) {
+    return this.angularFirestore.collection('users').doc(uid);
   }
 
-  getFriend(uid: any): User {
-    return this.friends.find((record) => {
-      return record.uid == uid;
-    });
+  createUser(user): Promise<void> {
+    return this.angularFirestore.collection('users').doc(user.uid).set(user);
+  }
+
+  editUser(user): Promise<void> {
+    return this.angularFirestore.collection('users').doc(user.uid).update(user);
   }
 }

@@ -22,7 +22,17 @@ export class ConversationComponent implements OnInit {
     this.friendId = this.activatedRoute.snapshot.params.uid;
     console.log('this.friendId');
     console.log(this.friendId);
-    this.friend = userService.getFriend(this.friendId);
+    userService
+      .getUserById(this.friendId)
+      .valueChanges()
+      .subscribe(
+        (data: User) => {
+          this.friend = data;
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
     console.log('this.friend');
     console.log(this.friend);
   }
