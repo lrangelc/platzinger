@@ -8,7 +8,8 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from './authentication.service';
-import { map, tap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+// import { map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -27,23 +28,24 @@ export class AuthenticationGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    // return this.authenticationService.getStatus().pipe(
-    //   map((status) => {
-    //     if (status) {
-    //       return true;
-    //     } else {
-    //       return false;
-    //     }
-    //   })
-    // );
-
     return this.authenticationService.getStatus().pipe(
-      map((user) => (user === null ? false : true)),
-      tap((hasUser) => {
-        if (!hasUser) {
+      map((status) => {
+        if (status) {
+          return true;
+        } else {
           this.router.navigate(['/login']);
+          return false;
         }
       })
     );
+
+    // return this.authenticationService.getStatus().pipe(
+    //   map((user) => (user === null ? false : true)),
+    //   tap((hasUser) => {
+    //     if (!hasUser) {
+    //       this.router.navigate(['/login']);
+    //     }
+    //   })
+    // );
   }
 }
