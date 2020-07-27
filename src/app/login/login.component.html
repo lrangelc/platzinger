@@ -17,7 +17,7 @@
           <h3>Iniciar Sesion</h3>
         </div>
         <p *ngIf="operation == 'register'">
-          Ya tienes cuenta? Has <a (click)="operation = 'login'">Login</a>
+          Ya tienes cuenta? <a (click)="operation = 'login'">Has Login</a>
         </p>
         <p *ngIf="operation == 'login'">
           No tienes cuenta? <a (click)="operation = 'register'">Registrarse</a>
@@ -26,31 +26,34 @@
           <input
             class="form-control mb-3"
             type="email"
-            name=""
-            id=""
             placeholder="Ingrese Email"
+            [(ngModel)]="email"
           />
           <input
             class="form-control mb-3"
             type="password"
-            name=""
-            id=""
             placeholder="Ingrese Password"
+            [(ngModel)]="password"
           />
           <input
             *ngIf="operation == 'register'"
             class="form-control mb-3"
             type="text"
-            name=""
-            id=""
+            [(ngModel)]="nick"
             placeholder="Ingrese Nick"
           />
         </div>
         <div class="center mt-3">
-          <a *ngIf="operation == 'login'" class="btn btn-primary" href=""
+          <a
+            (click)="login()"
+            *ngIf="operation == 'login'"
+            class="btn btn-primary"
             >Iniciar Sesion</a
           >
-          <a *ngIf="operation == 'register'" class="btn btn-primary" href=""
+          <a
+            (click)="register()"
+            *ngIf="operation == 'register'"
+            class="btn btn-primary"
             >Registrarme</a
           >
         </div>
