@@ -1,3 +1,5 @@
+import { Status } from './../types/user';
+
 export interface User {
   nick: string;
   subnick?: string;
@@ -5,4 +7,5 @@ export interface User {
   email: string;
   friend: boolean;
   uid: any;
+  status: Status;
 }

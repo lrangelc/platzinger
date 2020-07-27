@@ -1,8 +1,17 @@
-<mat-toolbar color="primary">
+<mat-toolbar
+  color="primary"
+  class="menuContainer"
+  *ngIf="location.path() != '/login'"
+>
   <mat-toolbar-row>
-    <img class="main-logo" src="./../../../../../assets/img/logo_live.png" alt="Logo de Platzinger" >
     <div>
       <nav>
+        <img
+          routerLink="/home"
+          class="main-logo"
+          src="./../../../../../assets/img/logo_live.png"
+          alt="Logo de Platzinger"
+        />
         <a mat-button routerLink="/home">Home</a>
         <a mat-button routerLink="/login">Login</a>
         <a mat-button routerLink="/profile">Profile</a>

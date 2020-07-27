@@ -1,5 +1,5 @@
 <app-header></app-header>
-<div>
+<div [ngClass]="{ generalContent: location.path() != '/login' }">
   <router-outlet></router-outlet>
 </div>
 <app-footer></app-footer>

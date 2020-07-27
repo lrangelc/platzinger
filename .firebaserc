@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "platzicourses-cb05c": {
+      "hosting": {
+        "platzinger": [
+          "platzicourses-cb05c"
+        ]
+      }
+    }
+  }
+}

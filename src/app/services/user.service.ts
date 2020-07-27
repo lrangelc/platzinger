@@ -14,6 +14,7 @@ export class UserService {
       email: 'ed@aoe.aoe',
       friend: true,
       uid: 2,
+      status: 'away',
     };
     const usuario2: User = {
       nick: 'Freddy',
@@ -21,6 +22,7 @@ export class UserService {
       email: 'fred@aoe.aoe',
       friend: true,
       uid: 3,
+      status: 'away',
     };
     const usuario3: User = {
       nick: 'Yuliana',
@@ -28,6 +30,7 @@ export class UserService {
       email: 'yuli@aoe.aoe',
       friend: true,
       uid: 4,
+      status: 'busy',
     };
     const usuario4: User = {
       nick: 'Ricardo',
@@ -35,6 +38,7 @@ export class UserService {
       email: 'rick@aoe.aoe',
       friend: false,
       uid: 5,
+      status: 'offline',
     };
     const usuario5: User = {
       nick: 'Marcos',
@@ -42,6 +46,7 @@ export class UserService {
       email: 'marcos@aoe.aoe',
       friend: false,
       uid: 6,
+      status: 'online',
     };
 
     this.friends = [usuario1, usuario2, usuario3, usuario4, usuario5];
