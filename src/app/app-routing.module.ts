@@ -7,19 +7,37 @@ import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProfileComponent } from './profile/profile.component';
 
+import { AuthenticationGuard } from './services/authentication.guard';
+
 const routes: Routes = [
   {
     path: '',
     component: LayoutComponent,
     children: [
-      { path: '', component: HomeComponent },
-      { path: 'home', component: HomeComponent },
+      {
+        path: '',
+        component: HomeComponent,
+        canActivate: [AuthenticationGuard],
+      },
+      {
+        path: 'home',
+        component: HomeComponent,
+        canActivate: [AuthenticationGuard],
+      },
       {
         path: 'login',
         component: LoginComponent,
       },
-      { path: 'conversation/:uid', component: ConversationComponent },
-      { path: 'profile', component: ProfileComponent },
+      {
+        path: 'conversation/:uid',
+        component: ConversationComponent,
+        canActivate: [AuthenticationGuard],
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        canActivate: [AuthenticationGuard],
+      },
       {
         path: '**',
         component: PageNotFoundComponent,
