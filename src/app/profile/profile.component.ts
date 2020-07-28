@@ -46,30 +46,31 @@ export class ProfileComponent implements OnInit {
 
   saveSettings(): void {
     if (this.croppedImage) {
-      const currentPictureId = Date.now();
-      const path = 'pictures/' + currentPictureId + '.jpg';
-      const pictures = this.angularFireStorage
-        .ref(path)
-        .putString(this.croppedImage, 'data_url');
-      pictures
-        .then((result) => {
-          this.picture = this.angularFireStorage.ref(path).getDownloadURL();
-          console.log('this.picture');
-          console.log(this.picture);
-          this.picture.subscribe((p) => {
-            this.userService
-              .setAvatar(this.user.uid, p)
-              .then(() => {
-                console.log('avatar uploaded');
-              })
-              .catch((err) => {
-                console.error(err);
-              });
+      if (this.croppedImage !== this.user.avatar) {
+        const currentPictureId = Date.now();
+        const path = 'pictures/' + currentPictureId + '.jpg';
+        const pictures = this.angularFireStorage
+          .ref(path)
+          .putString(this.croppedImage, 'data_url');
+        pictures
+          .then((result) => {
+            this.picture = this.angularFireStorage.ref(path).getDownloadURL();
+
+            this.picture.subscribe((p) => {
+              this.userService
+                .setAvatar(this.user.uid, p)
+                .then(() => {
+                  console.log('avatar uploaded');
+                })
+                .catch((err) => {
+                  console.error(err);
+                });
+            });
+          })
+          .catch((err) => {
+            console.error(err);
           });
-        })
-        .catch((err) => {
-          console.error(err);
-        });
+      }
     }
 
     this.userService

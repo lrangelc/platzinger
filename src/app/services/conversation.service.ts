@@ -13,14 +13,28 @@ export class ConversationService {
     // return this.angularFirestore
     //   .collection('conversations')
     //   .doc(conversation.uid).set(conversation);
+
+    // return this.angularFirestore
+    //   .collection(
+    //     'conversations/' + conversation.uid + '/' + conversation.timestamp
+    //   )
+    //   .add(conversation);
+
     return this.angularFirestore
-      .collection(
-        'conversations/' + conversation.uid + '/' + conversation.timestamp
-      )
-      .add(conversation);
+      .collection('conversations/' + conversation.uid + '/chat')
+      .doc('Chat' + conversation.timestamp.toString())
+      .set(conversation);
   }
 
-  getConversation(uid) {
-    return this.angularFirestore.collection('conversations').doc(uid);
+  getConversation(uid: string) {
+    return this.angularFirestore.collection('conversations/' + uid + '/chat');
+    // return this.angularFirestore.collection('conversations').doc(uid);
+  }
+
+  editConversation(conversationID, chatID) {
+    return this.angularFirestore
+      .collection('conversations/' + conversationID + '/chat')
+      .doc(chatID)
+      .update({ seen: true });
   }
 }

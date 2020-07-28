@@ -6,22 +6,28 @@
     <div class="row">
       <div class="col-xs-3 bg-grey marle-25">
         <div class="avatarFrameOnLine">
-          <img
-            src="./../../assets/img/generic_avatar.png"
-            class="homeAvatarPicture img-fluid"
-          />
+          <div class="avatarFrameOnline">
+            <img class="receiverAvatarPicture" [src]="receiverImage" />
+          </div>
         </div>
         <div class="avatarFrameOnLine marto250">
-          <img
-            src="./../../assets/img/generic_avatar.png"
-            class="homeAvatarPicture img-fluid"
-          />
+          <div class="avatarFrameOnline">
+            <img class="senderAvatarPicture" [src]="senderImage" />
+          </div>
         </div>
       </div>
       <div class="col">
         <span><b>Persona (Online)</b></span>
         <div class="container">
           <div class="chatContainer marto15">
+            <div class="messageGroup" *ngFor="let message of conversation">
+              <b>{{ getUserNickById(message.sender) }}</b> dice: <br />
+              <p>
+                <span>{{ message.textMessage }}</span>
+              </p>
+            </div>
+
+            <!-- 
             <div class="exampleChat">
               <span><b>Persona dice:</b></span>
               <p class="marle-25">Hola, ¿como estas?</p>
@@ -33,6 +39,8 @@
                 ¿y tu?
               </p>
             </div>
+
+             -->
           </div>
           <div class="bottomChat">
             <input
