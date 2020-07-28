@@ -12,7 +12,7 @@ export class UserService {
     return this.angularFirestore.collection('users');
   }
 
-  getUserById(uid) {
+  getUserById(uid: string) {
     return this.angularFirestore.collection('users').doc(uid);
   }
 
@@ -20,7 +20,14 @@ export class UserService {
     return this.angularFirestore.collection('users').doc(user.uid).set(user);
   }
 
-  editUser(user): Promise<void> {
+  editUser(user: User): Promise<void> {
     return this.angularFirestore.collection('users').doc(user.uid).update(user);
+  }
+
+  setAvatar(uid: string, avatar: string): Promise<void> {
+    return this.angularFirestore
+      .collection('users')
+      .doc(uid)
+      .update({ avatar });
   }
 }

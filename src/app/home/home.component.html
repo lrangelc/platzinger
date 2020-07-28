@@ -4,18 +4,15 @@
       <div class="row">
         <div class="col-md-auto">
           <div class="avatarFrameOnline">
-            <img
-              src="./../../assets/img/generic_avatar.png"
-              id="homeAvatarPicture"
-            />
+            <img class="homeAvatarPicture" [src]="croppedImage" />
           </div>
         </div>
-        <div class="col">
-          <b>Luis</b>
+        <div class="col" *ngIf="user">
+          <b>{{ user.nick }}</b>
           <div>
-            <span>Online</span>
+            <span>{{ user.status }}</span>
             <br />
-            <span>< Escribe un mensaje personal ></span>
+            <span>{{ user.subnick }}</span>
           </div>
         </div>
       </div>
