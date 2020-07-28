@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 
 import { ImageCropperModule } from 'ngx-image-cropper';
@@ -41,7 +42,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    ImageCropperModule
+    ImageCropperModule,
+    AngularFireStorageModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -25,6 +25,9 @@ export class UserService {
   }
 
   setAvatar(uid: string, avatar: string): Promise<void> {
-    return this.angularFirestore.collection('users').doc(uid).update(avatar);
+    return this.angularFirestore
+      .collection('users')
+      .doc(uid)
+      .update({ avatar });
   }
 }

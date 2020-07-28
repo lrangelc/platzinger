@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { User } from '../interfaces/user';
 import { AuthenticationService } from '../services/authentication.service';
@@ -13,10 +14,12 @@ export class ProfileComponent implements OnInit {
   user: User;
   imageChangedEvent: any = '';
   croppedImage: any = './../../assets/img/generic_avatar.png';
+  picture: any;
 
   constructor(
     private userService: UserService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private angularFireStorage: AngularFireStorage
   ) {
     this.authenticationService.getStatus().subscribe(
       (status) => {
@@ -26,6 +29,7 @@ export class ProfileComponent implements OnInit {
           .subscribe(
             (data: User) => {
               this.user = data;
+              this.croppedImage = this.user.avatar;
             },
             (err) => {
               console.error(err);
@@ -39,7 +43,35 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
   saveSettings(): void {
+    if (this.croppedImage) {
+      const currentPictureId = Date.now();
+      const path = 'pictures/' + currentPictureId + '.jpg';
+      const pictures = this.angularFireStorage
+        .ref(path)
+        .putString(this.croppedImage, 'data_url');
+      pictures
+        .then((result) => {
+          this.picture = this.angularFireStorage.ref(path).getDownloadURL();
+          console.log('this.picture');
+          console.log(this.picture);
+          this.picture.subscribe((p) => {
+            this.userService
+              .setAvatar(this.user.uid, p)
+              .then(() => {
+                console.log('avatar uploaded');
+              })
+              .catch((err) => {
+                console.error(err);
+              });
+          });
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+
     this.userService
       .editUser(this.user)
       .then(() => {})
