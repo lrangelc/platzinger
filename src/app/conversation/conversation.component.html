@@ -39,12 +39,22 @@
               type="area"
               class="form-control areaChat"
               placeholder="Escribe un mensaje"
-              name=""
+              [(ngModel)]="textMessage"
+              (keyup.enter)="sendMessage()"
             />
             <div class="marto15">
-              <img src="./../../assets/img/zumbido.png" class="iconImage img-fluid" />
-              <img src="./../../assets/img/zumbido.png" class="iconImage img-fluid" />
-              <img src="./../../assets/img/zumbido.png" class="iconImage img-fluid" />
+              <img
+                src="./../../assets/img/zumbido.png"
+                class="iconImage img-fluid"
+              />
+              <img
+                src="./../../assets/img/zumbido.png"
+                class="iconImage img-fluid"
+              />
+              <img
+                src="./../../assets/img/zumbido.png"
+                class="iconImage img-fluid"
+              />
               <label class="customFileUpload">
                 <input type="file" />
                 <i class="far fa-images"></i>
