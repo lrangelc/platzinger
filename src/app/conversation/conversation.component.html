@@ -1,7 +1,4 @@
-<!-- <p>{{ friend | json }}</p>
-<p>{{ price | number: "1.2-2" }}</p>
-<p>{{ today | date: "medium" }}</p> -->
-<div class="conversationContainer">
+<div class="conversationContainer" [ngClass]="{ shaker: shake }">
   <div class="contPrinc pato45">
     <div class="row">
       <div class="col-xs-3 bg-grey marle-25">
@@ -21,13 +18,24 @@
         <div class="container">
           <div class="chatContainer marto15">
             <div class="messageGroup" *ngFor="let message of conversation">
-              <b>{{ getUserNickById(message.sender) }}</b> dice: <br />
+              <b>{{ getUserNickById(message.sender) }}</b>
+              {{
+                message.type == "text"
+                  ? "dice:"
+                  : message.type == "image"
+                  ? "envio un zumbido"
+                  : "envio una imagen"
+              }}
+              <div *ngIf="message.imageURL">
+                <img class="senderAvatarPicture" [src]="message.imageURL" />
+              </div>
+              <br />
               <p>
                 <span>{{ message.textMessage }}</span>
               </p>
             </div>
 
-            <!-- 
+            <!--
             <div class="exampleChat">
               <span><b>Persona dice:</b></span>
               <p class="marle-25">Hola, ¿como estas?</p>
@@ -52,22 +60,33 @@
             />
             <div class="marto15">
               <img
-                src="./../../assets/img/zumbido.png"
-                class="iconImage img-fluid"
-              />
-              <img
-                src="./../../assets/img/zumbido.png"
-                class="iconImage img-fluid"
-              />
-              <img
-                src="./../../assets/img/zumbido.png"
+                (click)="sendBuzz()"
+                src="./../../assets/img/buzz.png"
                 class="iconImage img-fluid"
               />
               <label class="customFileUpload">
-                <input type="file" />
+                <input type="file" (change)="fileChangeEvent($event)" />
                 <i class="far fa-images"></i>
                 Seleccionar Imagen
               </label>
+              <mat-spinner *ngIf="uploadingImage"></mat-spinner>
+              <a
+                (click)="uploadImage()"
+                class="btn btn-primary"
+                *ngIf="imageReady"
+                >Enviar Imagen</a
+              >
+              <image-cropper
+                *ngIf="showImage"
+                [imageChangedEvent]="imageChangedEvent"
+                [maintainAspectRatio]="true"
+                [aspectRatio]="1 / 1"
+                format="png"
+                (imageCropped)="imageCropped($event)"
+                (imageLoaded)="imageLoaded()"
+                (cropperReady)="cropperReady()"
+                (loadImageFailed)="loadImageFailed()"
+              ></image-cropper>
             </div>
           </div>
         </div>

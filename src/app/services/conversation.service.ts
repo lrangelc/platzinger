@@ -8,8 +8,6 @@ export class ConversationService {
   constructor(private angularFirestore: AngularFirestore) {}
 
   createConversation(conversation) {
-    console.log('conversation');
-    console.log(conversation);
     // return this.angularFirestore
     //   .collection('conversations')
     //   .doc(conversation.uid).set(conversation);
