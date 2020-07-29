@@ -100,3 +100,6 @@ input[type="file"] {
     transform: translate(1px, -2px) rotate(-1deg);
   }
 }
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';

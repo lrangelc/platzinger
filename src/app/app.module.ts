@@ -21,6 +21,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
 
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     ImageCropperModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent],
