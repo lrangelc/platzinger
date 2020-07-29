@@ -7,7 +7,7 @@ import { LoginComponent } from './login/login.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { ProfileComponent } from './profile/profile.component';
 
-import { AuthenticationGuard } from './services/authentication.guard';
+import { AuthenticationGuard } from './services/authentication/authentication.guard';
 
 const routes: Routes = [
   {

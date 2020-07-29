@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../interfaces/user';
 import { UserService } from '../services/user/user.service';
-import { ConversationService } from '../services/conversation.service';
-import { AuthenticationService } from '../services/authentication.service';
+import { ConversationService } from '../services/conversation/conversation.service';
+import { AuthenticationService } from '../services/authentication/authentication.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 
