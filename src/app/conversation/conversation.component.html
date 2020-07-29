@@ -22,7 +22,7 @@
               {{
                 message.type == "text"
                   ? "dice:"
-                  : message.type == "image"
+                  : message.type != "image"
                   ? "envio un zumbido"
                   : "envio una imagen"
               }}
