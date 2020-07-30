@@ -16,37 +16,86 @@
           </div>
         </div>
       </div>
+      <div class="whiteContainerPadded mt-3">
+        <div class="row">
+          <div class="col">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Find a Friend"
+              [(ngModel)]="query"
+            />
+          </div>
+          <div class="col-md-auto">
+            <img
+              class="icon"
+              src="./../../assets/img/logo_live_add.png"
+              alt=""
+              (click)="open(content)"
+            />
+          </div>
+        </div>
+      </div>
+
+      <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+        <li [ngbNavItem]="1">
+          <a ngbNavLink>Amigos</a>
+          <ng-template ngbNavContent>
+            <hr />
+            <h3>Amigos ({{ friends.length }} / {{ friends.length }})</h3>
+            <ng-container
+              *ngFor="let user of friends | search: query; let i = index"
+            >
+              <div class="mb-3">
+                <span routerLink="/conversation/{{ user.uid }}">
+                  <img
+                    class="user-status"
+                    src="./../../../../../assets/img/logo_live_{{
+                      user.status
+                    }}.png"
+                    alt="status"
+                  />
+                  <b>{{ user.nick }}</b> - {{ user.subnick || "No subnick" }}
+                  <small>{{ user.email }}</small>
+                </span>
+              </div>
+            </ng-container>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+          <a ngbNavLink>Solicitudes de Amistad ({{ requestsLength }})</a>
+          <ng-template ngbNavContent>
+            <div class="row mt-1" *ngFor="let request of requests">
+              <br />
+              <div class="col-md-2">
+                <b>{{ request.senderNick }}</b>
+              </div>
+              <div class="col-md-2" *ngIf="user">
+                <b>{{ request.senderEmail }}</b>
+              </div>
+              <div class="col-md-1">
+                <button
+                  class="btn btn-primary"
+                  (click)="acceptRequest(request.id)"
+                >
+                  Confirmar
+                </button>
+              </div>
+              <div class="col-md-1">
+                <button
+                  class="btn btn-dark"
+                  (click)="deleteRequest(request.id)"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </ng-template>
+        </li>
+      </ul>
+
+      <div [ngbNavOutlet]="nav" class="mt-2"></div>
     </div>
-  </div>
-  <div class="whiteContainerPadded mt-3">
-    <div class="row">
-      <div class="col">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Find a Friend"
-          [(ngModel)]="query"
-        />
-      </div>
-      <div class="col-md-auto">
-        <img class="icon" src="./../../assets/img/logo_live_add.png" alt="" (click)="open(content)"/>
-      </div>
-    </div>
-    <hr />
-    <h3>Amigos ({{ friends.length }} / {{ friends.length }})</h3>
-    <ng-container *ngFor="let user of friends | search: query; let i = index">
-      <div class="mb-3">
-        <span routerLink="/conversation/{{ user.uid }}">
-          <img
-            class="user-status"
-            src="./../../../../../assets/img/logo_live_{{ user.status }}.png"
-            alt="status"
-          />
-          <b>{{ user.nick }}</b> - {{ user.subnick || "No subnick" }}
-          <small>{{ user.email }}</small>
-        </span>
-      </div>
-    </ng-container>
   </div>
 </div>
 

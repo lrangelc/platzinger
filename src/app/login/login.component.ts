@@ -46,6 +46,7 @@ export class LoginComponent implements OnInit {
           status: 'online',
           subnick: '',
           avatar: './../../assets/img/generic_avatar.png',
+          friends: [],
         };
         this.userService
           .createUser(user)

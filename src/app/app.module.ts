@@ -22,6 +22,7 @@ import { environment } from '../environments/environment';
 
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RequestComponent } from './modals/request/request.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PageNotFoundComponent,
     LayoutComponent,
     SearchPipe,
+    RequestComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     AngularFirestoreModule,
     ImageCropperModule,
     AngularFireStorageModule,
-    NgbModule
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
