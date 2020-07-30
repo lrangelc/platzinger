@@ -20,7 +20,9 @@ export class ProfileComponent implements OnInit {
     private userService: UserService,
     private authenticationService: AuthenticationService,
     private angularFireStorage: AngularFireStorage
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.authenticationService.getStatus().subscribe(
       (status) => {
         this.userService
@@ -41,8 +43,6 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
-
-  ngOnInit(): void {}
 
   saveSettings(): void {
     if (this.croppedImage) {

@@ -29,7 +29,9 @@ export class HomeComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private modalService: NgbModal,
     private requestsService: RequestsService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.authenticationService.getStatus().subscribe(
       (status) => {
         this.userService
@@ -40,6 +42,22 @@ export class HomeComponent implements OnInit {
               this.user = data;
               this.croppedImage = this.user.avatar;
               this.getRequests();
+
+              if (this.user.friends) {
+                if (this.user.friends.length > 0) {
+                  this.userService
+                    .getUsers(this.user.friends)
+                    .valueChanges()
+                    .subscribe(
+                      (data2: User[]) => {
+                        this.friends = data2;
+                      },
+                      (err) => {
+                        console.error(err);
+                      }
+                    );
+                }
+              }
             },
             (err) => {
               console.error(err);
@@ -50,21 +68,7 @@ export class HomeComponent implements OnInit {
         console.error(err);
       }
     );
-
-    userService
-      .getUsers()
-      .valueChanges()
-      .subscribe(
-        (data: User[]) => {
-          this.friends = data;
-        },
-        (err) => {
-          console.error(err);
-        }
-      );
   }
-
-  ngOnInit(): void {}
 
   open(content): void {
     this.modalService
@@ -147,8 +151,15 @@ export class HomeComponent implements OnInit {
       );
   }
 
-  acceptRequest(requestID: string): void {
-    this.requestsService.acceptRequest(this.user.email, requestID);
+  acceptRequest(requestID: string, sender: string): void {
+    this.requestsService.acceptRequest(this.user.email, requestID).then(
+      () => {
+        this.userService.addFriend(this.user.uid, sender);
+      },
+      (err) => {
+        console.error(err);
+      }
+    );
   }
 
   deleteRequest(requestID: string): void {

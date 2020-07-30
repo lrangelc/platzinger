@@ -37,7 +37,9 @@ export class ConversationComponent implements OnInit {
     private conversationService: ConversationService,
     private authenticationService: AuthenticationService,
     private angularFireStorage: AngularFireStorage
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.authenticationService.getStatus().subscribe(
       (status) => {
         this.userService
@@ -50,7 +52,7 @@ export class ConversationComponent implements OnInit {
 
               this.friendId = this.activatedRoute.snapshot.params.uid;
 
-              userService
+              this.userService
                 .getUserById(this.friendId)
                 .valueChanges()
                 .subscribe(
@@ -77,8 +79,6 @@ export class ConversationComponent implements OnInit {
       }
     );
   }
-
-  ngOnInit(): void {}
 
   sendMessage(): void {
     const message = {

@@ -9,8 +9,10 @@ import * as firebase from 'firebase/app';
 export class UserService {
   constructor(private angularFirestore: AngularFirestore) {}
 
-  getUsers() {
-    return this.angularFirestore.collection('users');
+  getUsers(friends: string[]): any {
+    return this.angularFirestore.collection('users', (ref) =>
+      ref.where('uid', 'in', friends)
+    );
   }
 
   getUserById(uid: string) {
