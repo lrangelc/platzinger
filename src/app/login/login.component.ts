@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from '../services/user.service';
-import { AuthenticationService } from './../services/authentication.service';
+import { User } from '../interfaces/user';
+import { UserService } from '../services/user/user.service';
+import { AuthenticationService } from '../services/authentication/authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -38,12 +39,14 @@ export class LoginComponent implements OnInit {
     this.authenticationService
       .registerWithEmail(this.email, this.password)
       .then((data) => {
-        const user = {
+        const user: User = {
           uid: data.user.uid,
           email: data.user.email,
           nick: this.nick,
           status: 'online',
           subnick: '',
+          avatar: './assets/img/generic_avatar.png',
+          friends: [],
         };
         this.userService
           .createUser(user)

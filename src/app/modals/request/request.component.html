@@ -1,0 +1,65 @@
+<button class="btn btn-lg btn-outline-primary" (click)="open(content2)">
+  Launch demo modal
+</button>
+<ng-template #content2 let-modal2 id="content3">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        Nueva Solicitud
+        <a class="closeButton" (click)="modal2.dismiss('Cross click')">x</a>
+      </div>
+      <div class="modal-body" style="height: auto;">
+        <p>{{ requests.length }}</p>
+        <div *ngFor="let request of requests">
+          <p>{{ request.sender }}</p>
+        </div>
+        <p>{{ requests.length }}</p>
+
+        <div class="row">
+          <div class="col-md-auto">
+            <img class="img-fluid" src="" alt="" />
+          </div>
+          <div class="col-md">
+            <b *ngIf="currentRequest">{{ currentRequest.sender }}</b>
+            <small>Te ha enviado esta solicitud</small>
+          </div>
+          <hr />
+          <h4>Deseas agregar a esta persona?</h4>
+          <input
+            type="radio"
+            name="addToMsn"
+            [(ngModel)]="shouldAdd"
+            value="yes"
+            id="add-yes"
+            checked
+          />
+          <label for="add-yes">Si quiero agregarlo</label><br />
+
+          <input
+            type="radio"
+            name="addToMsn"
+            [(ngModel)]="shouldAdd"
+            value="no"
+            id="add-no"
+          />
+          <label for="add-no">No quiero agregarlo</label><br />
+
+          <input
+            type="radio"
+            name="addToMsn"
+            [(ngModel)]="shouldAdd"
+            value="later"
+            id="add-later"
+          />
+          <label for="add-later">Despues quiero agregarlo</label><br />
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-primary" (click)="modal2.close('Save click')">Ok</a>
+          <a class="btn btn-default" (click)="modal2.dismiss('Cross click')"
+            >Cerrar</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

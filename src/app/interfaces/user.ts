@@ -5,7 +5,9 @@ export interface User {
   subnick?: string;
   age?: number;
   email: string;
-  friend: boolean;
+  friend?: boolean;
   uid: any;
   status: Status;
+  avatar?: string;
+  friends: string[];
 }

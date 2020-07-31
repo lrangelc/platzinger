@@ -1,39 +1,50 @@
-<div class="profileContainer">
+<div class="profileContainer" *ngIf="user">
   <div class="container pt-5">
     <div class="row">
       <div class="col-md-3">
         <div class="avatarFrameOnline">
-          <img
-            class="avatarImage img-fluid"
-            src="./../../assets/img/generic_avatar.png"
-            alt=""
-          />
+          <img class="avatarImage img-fluid" [src]="croppedImage" />
         </div>
         <hr />
         <div>
           <span>Cambiar Foto</span>
           <label class="custom-file-upload">
-            <input type="file" />
+            <input type="file" (change)="fileChangeEvent($event)" />
             Subir Avatar
           </label>
         </div>
       </div>
       <div class="col-md-9">
+        <image-cropper
+          [imageChangedEvent]="imageChangedEvent"
+          [maintainAspectRatio]="true"
+          [aspectRatio]="1 / 1"
+          format="png"
+          (imageCropped)="imageCropped($event)"
+          (imageLoaded)="imageLoaded()"
+          (cropperReady)="cropperReady()"
+          (loadImageFailed)="loadImageFailed()"
+        ></image-cropper>
         <div>
           <label fixed>Nick</label>
-          <input class="form-control" type="text" />
+          <input [(ngModel)]="user.nick" class="form-control" type="text" />
         </div>
         <div>
           <label fixed>Subnick</label>
-          <input class="form-control" type="text" />
+          <input [(ngModel)]="user.subnick" class="form-control" type="text" />
         </div>
         <div>
           <label fixed>Email</label>
-          <input class="form-control" type="text" disabled />
+          <input
+            [(ngModel)]="user.email"
+            class="form-control"
+            type="text"
+            disabled
+          />
         </div>
         <div>
           <label fixed>Status</label>
-          <select class="form-control">
+          <select [(ngModel)]="user.status" class="form-control">
             <option value="online">Conectado</option>
             <option value="offline">Desconectado</option>
             <option value="busy">Ocupado</option>
@@ -41,7 +52,9 @@
           </select>
         </div>
         <hr />
-        <a class="btn btn-primary btn-block">Guardar</a>
+        <a (click)="saveSettings()" class="btn btn-primary btn-block"
+          >Guardar</a
+        >
       </div>
     </div>
   </div>

@@ -17,7 +17,13 @@ import { FormsModule } from '@angular/forms';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 import { environment } from '../environments/environment';
+
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { RequestComponent } from './modals/request/request.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +35,8 @@ import { environment } from '../environments/environment';
     PageNotFoundComponent,
     LayoutComponent,
     SearchPipe,
+    RequestComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,6 +47,9 @@ import { environment } from '../environments/environment';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
+    ImageCropperModule,
+    AngularFireStorageModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
