@@ -56,6 +56,15 @@
               <br />
               <div class="col-md-2">
                 <b>{{ request.senderNick }}</b>
+                <br />
+
+                <div
+                  *ngIf="request.senderMessage"
+                  class="alert alert-primary"
+                  role="alert"
+                >
+                  <span>{{ request.senderMessage }}</span>
+                </div>
               </div>
               <div class="col-md-2" *ngIf="user">
                 <b>{{ request.senderEmail }}</b>
@@ -108,6 +117,15 @@
         [(ngModel)]="friendEmail"
         (keyup.enter)="modal.close('Save click')"
       />
+    </div>
+    <div>
+      <b>Mensaje</b>
+      <textarea
+        class="form-control"
+        type="text"
+        placeholder="Escribe un mensaje"
+        [(ngModel)]="friendMessage"
+      ></textarea>
     </div>
   </div>
   <div class="modal-footer">

@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
   query: string = '';
   closeResult = '';
   friendEmail = '';
+  friendMessage = '';
 
   requests: any[];
   requestsLength = 0;
@@ -103,6 +104,7 @@ export class HomeComponent implements OnInit {
     const request = {
       timestamp: Date.now(),
       receiverEmail: this.friendEmail,
+      senderMessage: this.friendMessage.trim(),
       senderNick: this.user.nick,
       senderEmail: this.user.email,
       sender: this.user.uid,
