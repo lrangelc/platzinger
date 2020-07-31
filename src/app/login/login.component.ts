@@ -45,7 +45,7 @@ export class LoginComponent implements OnInit {
           nick: this.nick,
           status: 'online',
           subnick: '',
-          avatar: './../../assets/img/generic_avatar.png',
+          avatar: './assets/img/generic_avatar.png',
           friends: [],
         };
         this.userService

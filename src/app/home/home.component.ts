@@ -14,7 +14,7 @@ import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 export class HomeComponent implements OnInit {
   active = 1;
 
-  croppedImage: any = './../../assets/img/generic_avatar.png';
+  croppedImage: any = './assets/img/generic_avatar.png';
   user: User;
   friends: User[] = [];
   query: string = '';
