@@ -13,7 +13,7 @@ import { UserService } from '../services/user/user.service';
 export class ProfileComponent implements OnInit {
   user: User;
   imageChangedEvent: any = '';
-  croppedImage: any = './../../assets/img/generic_avatar.png';
+  croppedImage: any = './assets/img/generic_avatar.png';
   picture: any;
 
   constructor(

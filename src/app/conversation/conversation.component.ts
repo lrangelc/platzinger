@@ -21,8 +21,8 @@ export class ConversationComponent implements OnInit {
   conversationID: string;
   textMessage: string;
   conversation: any[];
-  senderImage = './../../assets/img/generic_avatar.png';
-  receiverImage = './../../assets/img/generic_avatar.png';
+  senderImage = './assets/img/generic_avatar.png';
+  receiverImage = './assets/img/generic_avatar.png';
   shake = false;
   imageReady = false;
   showImage = false;
@@ -124,7 +124,7 @@ export class ConversationComponent implements OnInit {
   }
 
   doBuzz(): void {
-    const audio = new Audio('./../../assets/sound/buzz.m4a');
+    const audio = new Audio('./assets/sound/buzz.m4a');
     audio.play();
     this.shake = true;
     window.setTimeout(() => {
@@ -148,7 +148,7 @@ export class ConversationComponent implements OnInit {
                 'Chat' + message.timestamp.toString()
               );
               if (message.type === 'text') {
-                const audio = new Audio('./../../assets/sound/new_message.m4a');
+                const audio = new Audio('./assets/sound/new_message.m4a');
                 audio.play();
               } else if (message.type === 'buzz') {
                 this.doBuzz();
