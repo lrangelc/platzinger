@@ -1,0 +1,13 @@
+<div *ngIf="user" routerLink="/conversation/{{ user.uid }}">
+  <div class="mb-3">
+    <span routerLink="/conversation/{{ user.uid }}">
+      <img
+        class="user-status"
+        src="./../../../../../assets/img/logo_live_{{ user.status }}.png"
+        alt="status"
+      />
+      <b>{{ user.nick }}</b> - {{ user.subnick || "No subnick" }}
+      <small>{{ user.email }}</small>
+    </span>
+  </div>
+</div>

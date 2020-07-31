@@ -23,6 +23,7 @@ import { environment } from '../environments/environment';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RequestComponent } from './modals/request/request.component';
+import { ContactComponent } from './contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { RequestComponent } from './modals/request/request.component';
     LayoutComponent,
     SearchPipe,
     RequestComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,

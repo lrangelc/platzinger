@@ -43,23 +43,10 @@
           <ng-template ngbNavContent>
             <hr />
             <h3>Amigos ({{ friends.length }} / {{ friends.length }})</h3>
-            <ng-container
+            <app-contact
+              [user]="user"
               *ngFor="let user of friends | search: query; let i = index"
-            >
-              <div class="mb-3">
-                <span routerLink="/conversation/{{ user.uid }}">
-                  <img
-                    class="user-status"
-                    src="./../../../../../assets/img/logo_live_{{
-                      user.status
-                    }}.png"
-                    alt="status"
-                  />
-                  <b>{{ user.nick }}</b> - {{ user.subnick || "No subnick" }}
-                  <small>{{ user.email }}</small>
-                </span>
-              </div>
-            </ng-container>
+            ></app-contact>
           </ng-template>
         </li>
         <li [ngbNavItem]="2">
