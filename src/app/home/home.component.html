@@ -16,36 +16,125 @@
           </div>
         </div>
       </div>
+      <div class="whiteContainerPadded mt-3">
+        <div class="row">
+          <div class="col">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Find a Friend"
+              [(ngModel)]="query"
+            />
+          </div>
+          <div class="col-md-auto">
+            <img
+              class="icon"
+              src="./../../assets/img/logo_live_add.png"
+              alt=""
+              (click)="open(content)"
+            />
+          </div>
+        </div>
+      </div>
+
+      <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
+        <li [ngbNavItem]="1">
+          <a ngbNavLink>Amigos</a>
+          <ng-template ngbNavContent>
+            <hr />
+            <h3>Amigos ({{ friends.length }} / {{ friends.length }})</h3>
+            <app-contact
+              [user]="user"
+              *ngFor="let user of friends | search: query; let i = index"
+            ></app-contact>
+          </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+          <a ngbNavLink>Solicitudes de Amistad ({{ requestsLength }})</a>
+          <ng-template ngbNavContent>
+            <div class="row mt-1" *ngFor="let request of requests">
+              <br />
+              <div class="col-md-2">
+                <b>{{ request.senderNick }}</b>
+                <br />
+
+                <div
+                  *ngIf="request.senderMessage"
+                  class="alert alert-primary"
+                  role="alert"
+                >
+                  <span>{{ request.senderMessage }}</span>
+                </div>
+              </div>
+              <div class="col-md-2" *ngIf="user">
+                <b>{{ request.senderEmail }}</b>
+              </div>
+              <div class="col-md-1">
+                <button
+                  class="btn btn-primary"
+                  (click)="acceptRequest(request.id, request.sender)"
+                >
+                  Confirmar
+                </button>
+              </div>
+              <div class="col-md-1">
+                <button
+                  class="btn btn-dark"
+                  (click)="deleteRequest(request.id)"
+                >
+                  Delete
+                </button>
+              </div>
+            </div>
+          </ng-template>
+        </li>
+      </ul>
+
+      <div [ngbNavOutlet]="nav" class="mt-2"></div>
     </div>
-  </div>
-  <div class="whiteContainerPadded mt-3">
-    <div class="row">
-      <div class="col">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Find a Friend"
-          [(ngModel)]="query"
-        />
-      </div>
-      <div class="col-md-auto">
-        <img class="icon" src="./../../assets/img/logo_live_add.png" alt="" />
-      </div>
-    </div>
-    <hr />
-    <h3>Amigos ({{ friends.length }} / {{ friends.length }})</h3>
-    <ng-container *ngFor="let user of friends | search: query; let i = index">
-      <div class="mb-3">
-        <span routerLink="/conversation/{{ user.uid }}">
-          <img
-            class="user-status"
-            src="./../../../../../assets/img/logo_live_{{ user.status }}.png"
-            alt="status"
-          />
-          <b>{{ user.nick }}</b> - {{ user.subnick || "No subnick" }}
-          <small>{{ user.email }}</small>
-        </span>
-      </div>
-    </ng-container>
   </div>
 </div>
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Agregar amigo</h4>
+    <button
+      type="button"
+      class="close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div>
+      <b>Ingresa el Email de tu amigo</b>
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Email"
+        [(ngModel)]="friendEmail"
+        (keyup.enter)="modal.close('Save click')"
+      />
+    </div>
+    <div>
+      <b>Mensaje</b>
+      <textarea
+        class="form-control"
+        type="text"
+        placeholder="Escribe un mensaje"
+        [(ngModel)]="friendMessage"
+      ></textarea>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-outline-dark"
+      (click)="modal.close('Save click')"
+    >
+      Guardar
+    </button>
+  </div>
+</ng-template>

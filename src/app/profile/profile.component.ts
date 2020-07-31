@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 import { User } from '../interfaces/user';
-import { AuthenticationService } from '../services/authentication.service';
+import { AuthenticationService } from '../services/authentication/authentication.service';
 import { UserService } from '../services/user/user.service';
 
 @Component({
@@ -20,7 +20,9 @@ export class ProfileComponent implements OnInit {
     private userService: UserService,
     private authenticationService: AuthenticationService,
     private angularFireStorage: AngularFireStorage
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.authenticationService.getStatus().subscribe(
       (status) => {
         this.userService
@@ -41,8 +43,6 @@ export class ProfileComponent implements OnInit {
       }
     );
   }
-
-  ngOnInit(): void {}
 
   saveSettings(): void {
     if (this.croppedImage) {

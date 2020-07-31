@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { User } from '../interfaces/user';
 import { UserService } from '../services/user/user.service';
-import { ConversationService } from '../services/conversation.service';
-import { AuthenticationService } from '../services/authentication.service';
+import { ConversationService } from '../services/conversation/conversation.service';
+import { AuthenticationService } from '../services/authentication/authentication.service';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { ImageCroppedEvent } from 'ngx-image-cropper';
 
@@ -37,7 +37,9 @@ export class ConversationComponent implements OnInit {
     private conversationService: ConversationService,
     private authenticationService: AuthenticationService,
     private angularFireStorage: AngularFireStorage
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.authenticationService.getStatus().subscribe(
       (status) => {
         this.userService
@@ -50,7 +52,7 @@ export class ConversationComponent implements OnInit {
 
               this.friendId = this.activatedRoute.snapshot.params.uid;
 
-              userService
+              this.userService
                 .getUserById(this.friendId)
                 .valueChanges()
                 .subscribe(
@@ -77,8 +79,6 @@ export class ConversationComponent implements OnInit {
       }
     );
   }
-
-  ngOnInit(): void {}
 
   sendMessage(): void {
     const message = {
